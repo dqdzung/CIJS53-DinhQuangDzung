@@ -11,10 +11,9 @@ console.log(`
 //Backslash is an escape character
 
 // Ex 2:
-{
-  let a = [1, 2, 3, 4, 5, 6, 7, 8];
-}
-// use array filter
+// {
+//   let a = [1, 2, 3, 4, 5, 6, 7, 8];
+// }
 
 // Ex 3: Cho x = 0 hoặc 1. Không dùng điều kiện, in ra 1 nếu x = 0, in ra 0 nếu x = 1
 // {
