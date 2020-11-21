@@ -1,6 +1,6 @@
 // Ex 1:
 console.log(`
-( HI! )
+( NICE! )
     \\     ^__^
      \\_   (oo)\\_______
           (__)\\       )\\/\\
@@ -12,7 +12,14 @@ console.log(`
 
 // Ex 2:
 // {
-//   let a = [1, 2, 3, 4, 5, 6, 7, 8];
+//   let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+//   const getEven = (elem) => {
+//     if (elem % 2 === 0) {
+//       return elem;
+//     }
+//   };
+//   const evenArr = arr.filter(getEven);
+//   console.log(evenArr);
 // }
 
 // Ex 3: Cho x = 0 hoặc 1. Không dùng điều kiện, in ra 1 nếu x = 0, in ra 0 nếu x = 1
