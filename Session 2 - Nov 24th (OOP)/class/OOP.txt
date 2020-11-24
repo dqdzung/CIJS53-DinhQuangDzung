@@ -1,0 +1,16 @@
+OOP - Object Oriented Programming
+
+- Là một phương pháp lập trình, chia dữ liệu thành các object và làm việc dựa trên các object đó và mối quan hệ của chúng
+
+- Object và Class:
++ Object (cụ thể) bao gồm thuộc tính (property) và phương thức (method)
++ Class (chung chung): Blueprint để tạo nên một Object, dữ liệu được truyền vào Class để tạo ra Object
+
+- 4 tính chất OOP (trong JS):
++ Inheritance (kế thừa): Những tính chất của một Class có thể được kế thừa và sử dụng lại
++ Đóng gói (encapsulation): "Gói" chung các dữ liệu liên quan lại với nhau (vd: name, age, address có liên quan -> gói chung lại vào Person)
++ Đa hình (polymorphism): ẩn trong JS
++ Trừu tượng (abstract): ẩn trong JS
+
+S O L I D: 5 principles of OOP design
+3 design patterns
