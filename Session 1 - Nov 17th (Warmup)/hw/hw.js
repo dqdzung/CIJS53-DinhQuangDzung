@@ -1,5 +1,5 @@
 // Ex 1:
-https://docs.google.com/document/d/1fPCF9HqexHVMy3czg8xqeccnSv9iJNaxeIQ_fGDXBXE/edit?usp=sharing
+//https://docs.google.com/document/d/1fPCF9HqexHVMy3czg8xqeccnSv9iJNaxeIQ_fGDXBXE/edit?usp=sharing
 
 // Ex 2:
 const randomArr = () => {
