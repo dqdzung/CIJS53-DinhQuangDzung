@@ -21,6 +21,9 @@ const checkPrime = (num) => {
   }
   return num > 1;
 };
+const arr = randomArr();
+console.log(arr);
+arr.filter(checkPrime);
 
 // Ex 3:
 const $answer = document.getElementById("answer"),
