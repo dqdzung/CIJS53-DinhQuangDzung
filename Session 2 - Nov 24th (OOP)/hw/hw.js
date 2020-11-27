@@ -1,4 +1,21 @@
-// Bookshelf management
+// 1. Module:
+// - Module trong JS là tập hợp các dòng code có liên quan, đảm nhiệm cùng một chức năng/nhiệm vụ. Tóm lại, mỗi module là 1 file js.
+// - Mỗi module có scope riêng.
+// - Các module có thể giao tiếp với nhau thông qua import và export:
+//  + Ví dụ: có một module sayHi.js export một function:
+
+//📁 sayHi.js
+export function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+//...Một module khác có thể import và sử dụng nó:
+
+// 📁 main.js
+import { sayHi } from "./sayHi.js";
+sayHi("Dzung");
+
+
+// 2. Bookshelf management
 
 class Book {
   constructor(id, name, price, publishedDate) {
