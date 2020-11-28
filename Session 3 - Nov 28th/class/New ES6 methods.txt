@@ -1,0 +1,4 @@
+object instanceof Class: to check if an "object" is constructed from "Class"
+array.find(): returns the value of the first element in an array that pass a test (provided as a function), returns "null" if none is found.
+array.findIndex(): returns the index of the first element in an array that pass a test (provided as a function), returns -1 if none is found.
+array.filter(): creates an array filled with all array elements that pass a test (provided as a function).
