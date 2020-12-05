@@ -1,0 +1,7 @@
+JSON:
+- essentially a string
+- has structure
+- analyze -> data (object, array)
+
+object, array -> string: JSON.stringify(object|array)
+string(JSON) -> object, array: JSON.parse(string)
