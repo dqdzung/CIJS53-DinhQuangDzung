@@ -1,10 +1,19 @@
 import ItemContainer from "./ItemContainerComponent.js";
 
 const $template = document.createElement("template");
-$template.innerHTML =
-  /*html*/
-  `<div id="item-list">
-      </div>`;
+$template.innerHTML = /*html*/ `
+  <style>
+    #item-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    item-container {
+      margin: 10px;
+    }
+  </style>
+  <div id="item-list">
+  </div>`;
 
 export default class ItemList extends HTMLElement {
   constructor(data) {
@@ -25,11 +34,12 @@ export default class ItemList extends HTMLElement {
     if (attrName == "data") {
       let data = JSON.parse(newValue);
       for (let item of data) {
-        let $itemContainer = new ItemContainer();
-        $itemContainer.setAttribute("image", item.image);
-        $itemContainer.setAttribute("price", item.price);
-        $itemContainer.setAttribute("description", item.description);
-        $itemContainer.setAttribute("address", item.address);
+        let $itemContainer = new ItemContainer(
+          item.image,
+          item.price,
+          item.description,
+          item.address
+        );
         this.$itemList.appendChild($itemContainer);
       }
     }

@@ -3,11 +3,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAiuC7uL8PPftEp8yuD_8oHJaQcTVwPh44",
+        authDomain: "ci53-dqd.firebaseapp.com",
+        projectId: "ci53-dqd",
+        storageBucket: "ci53-dqd.appspot.com",
+        messagingSenderId: "746125710470",
+        appId: "1:746125710470:web:23804b7f90ad28b2ff2d07",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </head>
   <body>
+    <div id="root"></div>
 
-  <div id="root"></div>
-  
     <script src="./js/index.js" type="module"></script>
   </body>
 </html>

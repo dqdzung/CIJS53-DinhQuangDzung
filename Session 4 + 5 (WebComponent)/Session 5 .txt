@@ -3,5 +3,13 @@ JSON:
 - has structure
 - analyze -> data (object, array)
 
+Convert:
 object, array -> string: JSON.stringify(object|array)
-string(JSON) -> object, array: JSON.parse(string)
+string (JSON) -> object, array: JSON.parse(string)
+
+Idea of React/WebComponent:
+- Reusability
+- Life cycle:
+    + Mount
+    + Update
+    + Unmount
