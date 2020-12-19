@@ -12,7 +12,7 @@ $template.innerHTML = /*html*/ `
         <input-wrapper id="password-confirmation" label="Password confirmation" type="password" error="" value=""></input-wrapper>
         <button id="register-btn">Register</button>
 
-        <div id="to-login">Have an account? <b><a href="#">Login</a></b>
+        <div id="to-login">Have an account? <b><a href="#!/sign-in">Login</a></b>
         </div>
 
     </form>

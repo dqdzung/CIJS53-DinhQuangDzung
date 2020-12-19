@@ -1,0 +1,102 @@
+import FriendContainer from "./FriendContainer.js";
+import InputWrapper from "./InputWrapper.js";
+import {getDataFromDocs} from "../utilities.js";
+
+const $template = document.createElement("template");
+$template.innerHTML = /*html*/ `
+    <style>
+        * {
+            background-color: white;
+        }
+        
+        #title {
+            padding: 15px;
+            font-family: Arial;
+            font-weight: bold;
+            font-size: 20px; 
+            text-align: center;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        #search-friend-form {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #cccccc;
+                
+        }
+
+        #search-friend-btn {
+            border: 1px solid #cccccc;
+            background-color: #1995ad;
+            padding: 0px 10px;
+            height: 40px;
+            width: 100px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        #search-friend-input {
+            width: calc(100% - 100px - 15px);
+        }
+
+    </style>    
+    <div id="title">
+        Friends
+        
+    </div>
+
+    <form id="search-friend-form">
+        <input-wrapper id="search-friend-input" label="" type="text" error=""></input-wrapper>
+        <button id="search-friend-btn">Search</button>    
+    </form>
+    <div id="friend-list">
+    </div>
+`;
+
+export default class FriendList extends HTMLElement {
+  constructor(data) {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild($template.content.cloneNode(true));
+    this.$friendList = this.shadowRoot.getElementById("friend-list");
+
+    this.$searchFriendInput = this.shadowRoot.getElementById("search-friend-input");
+    this.$searchFriendForm = this.shadowRoot.getElementById("search-friend-form");
+
+    this.setAttribute("data", JSON.stringify(data));
+  }
+
+  connectedCallback() {
+    this.$searchFriendForm.onsubmit = async (event) => {
+      event.preventDefault();
+
+      let keyword = this.$searchFriendInput.value();
+
+      let isPassed = InputWrapper.validate(this.$searchFriendInput, (value) => value != "", "Enter a friend name");
+
+      if (isPassed) {
+          let result = await firebase.firestore().collection("users").where("name", "==", keyword).get();
+          console.log(result);
+          console.log(getDataFromDocs(result.docs));
+      }
+    };
+  }
+
+  static get observedAttributes() {
+    return ["data"];
+  }
+
+  attributeChangedCallback(attrName, oldValue, newValue) {
+    if (attrName == "data") {
+      let friendsData = JSON.parse(newValue);
+      for (let friendData of friendsData) {
+        let $friendContainer = new FriendContainer(friendData.name);
+        this.$friendList.appendChild($friendContainer);
+      }
+    }
+  }
+}
+
+window.customElements.define("friend-list", FriendList);

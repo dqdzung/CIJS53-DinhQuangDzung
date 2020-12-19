@@ -10,7 +10,7 @@ $template.innerHTML = /*html*/ `
         <input-wrapper id="password" label="Password" type="password" error="" value=""></input-wrapper>     
         <button id="login-btn">Login</button>
 
-        <div id="to-register">Don't have an account? <b><a href="#">Register</a></b>
+        <div id="to-register">Don't have an account? <b><a href="#!/sign-up">Register</a></b>
         </div>
 
     </form>
@@ -47,7 +47,8 @@ export default class LoginForm extends HTMLElement {
         if (result.empty) {
             alert("Incorrect email or password!");
         } else {
-            alert("Logging in!");
+            // alert("Logging in!");
+            router.navigate("/chat");
         }
       }
     };
