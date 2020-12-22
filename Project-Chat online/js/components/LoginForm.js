@@ -1,5 +1,6 @@
 import InputWrapper from "./InputWrapper.js";
-import { validateEmail } from "../utilities.js";
+import { getDataFromDoc, validateEmail } from "../utilities.js";
+import { saveCurrentUser } from "../utilities.js";
 
 const $template = document.createElement("template");
 $template.innerHTML = /*html*/ `
@@ -45,10 +46,11 @@ export default class LoginForm extends HTMLElement {
           .get();
 
         if (result.empty) {
-            alert("Incorrect email or password!");
+          alert("Incorrect email or password!");
         } else {
-            // alert("Logging in!");
-            router.navigate("/chat");
+          // alert("Logging in!");
+          saveCurrentUser(getDataFromDoc(result.docs[0]));
+          router.navigate("/chat");
         }
       }
     };

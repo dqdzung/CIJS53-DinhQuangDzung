@@ -1,6 +1,6 @@
 import FriendContainer from "./FriendContainer.js";
 import InputWrapper from "./InputWrapper.js";
-import {getDataFromDocs} from "../utilities.js";
+import { getCurrentUser, getDataFromDocs } from "../utilities.js";
 
 const $template = document.createElement("template");
 $template.innerHTML = /*html*/ `
@@ -77,9 +77,8 @@ export default class FriendList extends HTMLElement {
       let isPassed = InputWrapper.validate(this.$searchFriendInput, (value) => value != "", "Enter a friend name");
 
       if (isPassed) {
-          let result = await firebase.firestore().collection("users").where("name", "==", keyword).get();
-          console.log(result);
-          console.log(getDataFromDocs(result.docs));
+        let data = await this.searchFriendByName(keyword);
+        this.setAttribute("data", JSON.stringify(data));
       }
     };
   }
@@ -91,12 +90,46 @@ export default class FriendList extends HTMLElement {
   attributeChangedCallback(attrName, oldValue, newValue) {
     if (attrName == "data") {
       let friendsData = JSON.parse(newValue);
+      this.$friendList.innerHTML = "";
       for (let friendData of friendsData) {
-        let $friendContainer = new FriendContainer(friendData.name);
+        let $friendContainer = new FriendContainer(friendData.name, friendData.email, friendData.isFriend);
         this.$friendList.appendChild($friendContainer);
       }
     }
   }
+
+  async searchFriendByName(name) {
+    // Get users with matched "name"
+    let result = await firebase.firestore().collection("users").where("name", "==", name).get();
+
+    let data = getDataFromDocs(result.docs);
+
+    // Check if found users are friends with current user
+    for (let friendData of data) {
+      let currentUser = getCurrentUser();
+
+      // Get all friends of current user
+      result = await firebase
+        .firestore()
+        .collection("friends")
+        .where("relation", "array-contains", currentUser.id)
+        .get();
+
+      let existFriends = getDataFromDocs(result.docs);
+
+      // Compare search results with above friends
+      for (let friendData of data) {
+        let exist = existFriends.find(function (existFriend) {
+          let relation = existFriend.relation;
+          return relation[0] == friendData.id || relation[1] == friendData.id;
+        });
+
+        friendData.isFriend = exist ? true : false;
+      }
+    }
+    return data;
+  }
+
 }
 
 window.customElements.define("friend-list", FriendList);

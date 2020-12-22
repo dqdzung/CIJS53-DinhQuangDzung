@@ -14,3 +14,18 @@ export function getDataFromDocs(docs, excepts = []) {
     return getDataFromDoc(doc, excepts);
   });
 }
+
+// Save current user info into localStorage
+export function saveCurrentUser(user) {
+  localStorage.setItem("current-user", JSON.stringify(user));
+}
+
+// Get current user info from localStorage
+export function getCurrentUser() {
+  let result = localStorage.getItem("current-user");
+
+  if (result) {
+    return JSON.parse(result);
+  }
+  return null;
+}
