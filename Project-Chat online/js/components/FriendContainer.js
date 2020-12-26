@@ -40,6 +40,7 @@ export default class FriendContainer extends HTMLElement {
     this.$addFriendBtn = this.shadowRoot.getElementById("add-friend-btn");
     this.id = id;
 
+    this.id = id;
     this.setAttribute("name", name);
     this.setAttribute("email", email);
     this.setAttribute("is-friend", isFriend);
