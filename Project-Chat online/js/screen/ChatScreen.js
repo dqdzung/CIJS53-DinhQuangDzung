@@ -3,8 +3,28 @@ import { getCurrentUser, getDataFromDoc, getDataFromDocs } from "../utilities.js
 const $template = document.createElement("template");
 
 $template.innerHTML = /*html*/ `
-    <friend-list></friend-list>
-    <chat-container></chat-container>
+    <style>
+      #chat-screen {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      friend-list {
+        width: 30%;
+        height: 100vh;
+      }
+
+      chat-container {
+        width: 69%;
+        height: 100vh;
+      }
+
+    </style>
+    <div id="chat-screen">
+      <friend-list></friend-list>
+      <chat-container></chat-container>
+    </div>
+ 
 `;
 
 export default class ChatScreen extends HTMLElement {
@@ -15,6 +35,12 @@ export default class ChatScreen extends HTMLElement {
 
     this.$friendList = this.shadowRoot.querySelector("friend-list");
     this.$chatContainer = this.shadowRoot.querySelector("chat-container");
+  }
+
+  async connectedCallback() {
+    let friendsData = await this.loadFriends();
+    console.log(friendsData);
+    this.$friendList.setAttribute("data", JSON.stringify(friendsData));
   }
 
   async loadFriends() {
@@ -37,14 +63,12 @@ export default class ChatScreen extends HTMLElement {
         friendId = relation[0];
       }
       let result = await firebase.firestore().collection("users").doc(friendId).get();
-      friendsData.push(getDataFromDoc(result));
+      let friendData = getDataFromDoc(result);
+      friendData.isFriend = true;
+
+      friendsData.push(friendData);
     }
     return friendsData;
-  }
-
-  async connectedCallback() {
-      let friendsData = await this.loadFriends();
-      console.log(friendsData);
   }
 }
 

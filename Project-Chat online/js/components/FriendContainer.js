@@ -31,13 +31,14 @@ $template.innerHTML = /*html*/ `
 `;
 
 export default class FriendContainer extends HTMLElement {
-  constructor(name, email, isFriend) {
+  constructor(id, name, email, isFriend) {
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild($template.content.cloneNode(true));
     this.$friendName = this.shadowRoot.getElementById("friend-name");
     this.$friendEmail = this.shadowRoot.getElementById("friend-email");
     this.$addFriendBtn = this.shadowRoot.getElementById("add-friend-btn");
+    this.id = id;
 
     this.setAttribute("name", name);
     this.setAttribute("email", email);

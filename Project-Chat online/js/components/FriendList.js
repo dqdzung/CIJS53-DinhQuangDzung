@@ -6,9 +6,15 @@ const $template = document.createElement("template");
 $template.innerHTML = /*html*/ `
     <style>
         * {
-            background-color: white;
+            background-color: #f1f1f2;
         }
         
+        #wrapper {
+          height: 100vh;
+          background-color: #f1f1f2;
+
+        }
+
         #title {
             padding: 15px;
             font-family: Arial;
@@ -41,18 +47,19 @@ $template.innerHTML = /*html*/ `
             width: calc(100% - 100px - 15px);
         }
 
-    </style>    
-    <div id="title">
-        Friends
-        
-    </div>
-
-    <form id="search-friend-form">
+    </style>
+    <div id="wrapper">
+      <div id="title">
+      Friends
+      </div>
+      <form id="search-friend-form">
         <input-wrapper id="search-friend-input" label="" type="text" error=""></input-wrapper>
         <button id="search-friend-btn">Search</button>    
-    </form>
-    <div id="friend-list">
-    </div>
+      </form>
+      <div id="friend-list">
+      </div>
+    </div>    
+
 `;
 
 export default class FriendList extends HTMLElement {
@@ -92,7 +99,12 @@ export default class FriendList extends HTMLElement {
       let friendsData = JSON.parse(newValue);
       this.$friendList.innerHTML = "";
       for (let friendData of friendsData) {
-        let $friendContainer = new FriendContainer(friendData.name, friendData.email, friendData.isFriend);
+        let $friendContainer = new FriendContainer(
+          friendData.id,
+          friendData.name,
+          friendData.email,
+          friendData.isFriend
+        );
         this.$friendList.appendChild($friendContainer);
       }
     }
@@ -129,7 +141,6 @@ export default class FriendList extends HTMLElement {
     }
     return data;
   }
-
 }
 
 window.customElements.define("friend-list", FriendList);

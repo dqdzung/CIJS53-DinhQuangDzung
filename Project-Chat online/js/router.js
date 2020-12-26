@@ -17,7 +17,7 @@ router
 
 router
   .on("/chat", function () {
-    document.getElementById("app").innerHTML = "<h1>This is the Chat page</h1>";
+    document.getElementById("app").innerHTML = "<chat-container></chat-container>";
   })
   .resolve();
 
