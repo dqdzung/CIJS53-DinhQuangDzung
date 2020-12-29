@@ -39,7 +39,7 @@ export default class ChatScreen extends HTMLElement {
 
   async connectedCallback() {
     let friendsData = await this.loadFriends();
-    console.log(friendsData);
+    // console.log(friendsData);
     this.$friendList.setAttribute("data", JSON.stringify(friendsData));
   }
 

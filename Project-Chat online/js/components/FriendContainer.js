@@ -51,6 +51,11 @@ export default class FriendContainer extends HTMLElement {
   }
 
   connectedCallback() {
+    this.onclick = () => {
+      console.log("Direct to chat with " + this.getAttribute("name"));
+      router.navigate("/chat/" + this.id);
+    }
+
     this.$addFriendBtn.onclick = async () => {
       this.$addFriendBtn.disabled = true;
       await this.addFriend(this.id);
