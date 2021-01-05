@@ -13,6 +13,7 @@ $template.innerHTML = /*html*/ `
             align-items: center;
             padding: 15px;
             border-bottom: 1px solid #cccccc;
+            cursor: pointer;
         }
         #friend-email {
           font-size: 13px;

@@ -2,6 +2,9 @@ const $template = document.createElement("template");
 
 $template.innerHTML = /*html*/ `
     <style>
+        #message-container {
+          margin: 5px;
+        }
         #message-content {
             display: inline-block;
             background-color: #1995ad;
@@ -9,7 +12,7 @@ $template.innerHTML = /*html*/ `
             font-family: Arial;
             font-size: 15px;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 10px;
             max-width: 50%;
             word-break: break-word;
         }
